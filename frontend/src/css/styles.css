@@ -1,0 +1,25 @@
+/* Hide the spin buttons in number input fields */
+
+/* WebKit browsers (Chrome, Safari) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Hides spin buttons */
+  margin: 0; /* Remove default margin */
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield; /* Hides spin buttons */
+}
+
+/* Standard appearance property, but note it is not widely supported */
+input[type="number"] {
+  appearance: none; /* Hides spin buttons, but use with caution */
+}
+
+
+.custom-wrap {
+  word-wrap: break-word; /* Breaks long words */
+  overflow-wrap: break-word; /* Ensures content wraps within container */
+  hyphens: auto; /* Adds hyphens if text overflows */
+}
