@@ -16,10 +16,3 @@ input[type="number"] {
 input[type="number"] {
   appearance: none; /* Hides spin buttons, but use with caution */
 }
-
-
-.custom-wrap {
-  word-wrap: break-word; /* Breaks long words */
-  overflow-wrap: break-word; /* Ensures content wraps within container */
-  hyphens: auto; /* Adds hyphens if text overflows */
-}

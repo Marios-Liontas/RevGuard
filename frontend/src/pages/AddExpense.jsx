@@ -5,7 +5,7 @@ import * as apiClient from "../api-client"
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 
-const AddRevenue = () => {
+const AddExpense = () => {
 
     const {
         register,
@@ -17,15 +17,15 @@ const AddRevenue = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
-    const mutation = useMutation(apiClient.CreateRevenue, {
+    const mutation = useMutation(apiClient.CreateExpense, {
         onSuccess: async (data) => {
-            console.log("Revenue added successfully", data);
-            await queryClient.invalidateQueries("revenue");
-            navigate("/revenue");
+            console.log("Expense added successfully", data);
+            await queryClient.invalidateQueries("expense");
+            navigate("/expense");
             reset();
         },
         onError: (error) => {
-            console.log("Failed to add revenue", error.message);
+            console.log("Failed to add expense", error.message);
         }
     });
     const onSubmit = handleSubmit((data) => {
@@ -71,6 +71,27 @@ const AddRevenue = () => {
             </label>
 
             <label className='text-gray-700 text-md font-bold flex-1'>
+                Category
+                <select
+                    className='border rounded-md border-gray-700 w-full py-1 px-2 font-normal no-arrows'
+                    {...register("category", { required: "This field is required" })}
+                >
+                    <option value="">Select a category</option>
+                    <option value="Housing">Housing</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Food">Food</option>
+                    <option value="Health">Health</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+                {errors.category && (
+                    <p className='text-red-500'>
+                        {errors.category.message}
+                    </p>
+                )}
+            </label>
+
+            <label className='text-gray-700 text-md font-bold flex-1'>
                 Description
                 <input
                     type="text"
@@ -96,4 +117,4 @@ const AddRevenue = () => {
     );
 }
 
-export default AddRevenue;
+export default AddExpense;

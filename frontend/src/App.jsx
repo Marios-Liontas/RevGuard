@@ -9,6 +9,8 @@ import SignIn from "./pages/SignIn"
 import Revenue from "./pages/Revenue";
 import AddRevenue from "./pages/AddRevenue";
 import { useAppContext } from './context/AppContext';
+import Expense from "./pages/Expense";
+import AddExpense from "./pages/AddExpense"
 
 const App = () => {
 
@@ -62,7 +64,7 @@ const App = () => {
           path="/expense"
           element={
             <Layout>
-              Expenses
+              <Expense/>
             </Layout>
           }
         />
@@ -85,6 +87,14 @@ const App = () => {
           }
         />
 
+        <Route
+          path="/addexpense"
+          element={
+            <Layout>
+              <AddExpense/>
+            </Layout>
+          }
+        />
         
         
       </Routes>

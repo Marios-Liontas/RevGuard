@@ -13,7 +13,7 @@ const Header = () => {
           <Link to="/">RevGuard</Link>
         </span>
 
-        <span className='flex flex-row space-x-2'>
+        <span className='flex flex-row space-x-1'>
           {isLoggedIn ? (
             <>
               <Link to="/overview" className='flex items-center text-white px-3 font-bold hover:bg-gray-400'>

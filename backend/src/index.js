@@ -6,6 +6,7 @@ import loginRoute from './routes/login.js';
 import revenueRoutes from "./routes/revenue.js";
 import cors from "cors";
 import cookieParser from "cookie-parser"
+import expenseRoutes from "./routes/expense.js"
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
@@ -18,6 +19,7 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -26,6 +28,7 @@ app.use(cookieParser());
 app.use('/api', registerRoute);
 app.use('/api', loginRoute);
 app.use('/api', revenueRoutes);
+app.use('/api', expenseRoutes);
 
 // Start server
 app.listen(port, () => {

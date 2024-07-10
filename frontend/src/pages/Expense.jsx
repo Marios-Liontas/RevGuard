@@ -1,6 +1,7 @@
 import React from 'react'
 import PickDate from '../Components/Datepicker';
 import { Link } from 'react-router-dom';
+import RenderExpenses from '../Components/RenderExpenses';
 
 export const Expense = () => {
     return (
@@ -9,13 +10,13 @@ export const Expense = () => {
                 <PickDate />
             </div>
 
-            <RenderRevenues />
+            <RenderExpenses/>
 
             <div className='w-full flex justify-center'>
-                <Link to="/addrevenue">
+                <Link to="/addexpense">
                     <button
                         className='border p-2 font-bold bg-blue-300 rounded-md mt-4 hover:bg-blue-500'>
-                        Add Revenue
+                        Add Expense
                     </button>
                 </Link>
             </div>
@@ -24,4 +25,4 @@ export const Expense = () => {
     );
 };
 
-export default Revenue;
+export default Expense;

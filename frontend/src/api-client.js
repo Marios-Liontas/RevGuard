@@ -22,6 +22,7 @@ export const registerUser = async (formData) => {
     return responseBody;
 };
 
+
 export const loginUser = async (data) => {
     const response = await fetch(`${API_BASE_URL}/api/login`,
         {
@@ -40,6 +41,7 @@ export const loginUser = async (data) => {
     }
 };
 
+
 export const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/validate-token`, {
         credentials: "include"
@@ -49,7 +51,8 @@ export const validateToken = async () => {
     }
 
     return response.json();
-}
+};
+
 
 export const SignOut = async () => {
     const response = await fetch(`${API_BASE_URL}/api/logout`, {
@@ -60,7 +63,8 @@ export const SignOut = async () => {
     if (!response.ok) {
         throw new Error("Error during sign out");
     }
-}
+};
+
 
 export const CreateRevenue = async (data) => {
     const response = await fetch(`${API_BASE_URL}/api/new-revenue`, {
@@ -78,7 +82,8 @@ export const CreateRevenue = async (data) => {
     }
 
     return responseBody;
-}
+};
+
 
 export const GetRevenues = async () => {
     const response = await fetch(`${API_BASE_URL}/api/get-revenues`, {
@@ -93,7 +98,8 @@ export const GetRevenues = async () => {
     }
 
     return responseBody;
-}
+};
+
 
 export const GetRevenueById = async (id) => {
 
@@ -111,10 +117,10 @@ export const GetRevenueById = async (id) => {
     }
 
     return responseBody;
-}
+};
 
 
-export const UpdateRevenue = async (id,data) => {
+export const UpdateRevenue = async (id, data) => {
     if (!id) {
         throw new Error("Revenue ID is required");
     }
@@ -135,7 +141,8 @@ export const UpdateRevenue = async (id,data) => {
     }
 
     return responseBody;
-}
+};
+
 
 export const DeleteRevenue = async (id) => {
     if (!id) {
@@ -151,4 +158,99 @@ export const DeleteRevenue = async (id) => {
         const responseBody = await response.json();
         throw new Error(responseBody.message || "Error while deleting current revenue")
     }
-}
+};
+
+
+export const CreateExpense = async (data) => {
+    const response = await fetch(`${API_BASE_URL}/api/new-expense`, {
+        credentials: "include",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const responseBody = await response.json();
+    if (!response.ok) {
+        throw new Error(responseBody.message || "Failed to create expense");
+    }
+
+    return responseBody;
+};
+
+
+export const GetExpenses = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/get-expenses`, {
+        credentials: "include",
+        method: "GET"
+    });
+
+    const responseBody = await response.json();
+
+    if (!response.ok) {
+        throw new Error(responseBody.message || "Error while fetching Expenses")
+    }
+
+    return responseBody;
+};
+
+
+export const GetExpenseById = async (id) => {
+
+    if (!id) {
+        throw new Error("Expense ID is required");
+    }
+    const response = await fetch(`${API_BASE_URL}/api//get-expense/${id}`, {
+        credentials: "include"
+    });
+    
+    const responseBody = await response.json();
+
+    if (!response.ok) {
+        throw new Error(responseBody.message || "Error while fetching Expenses")
+    }
+
+    return responseBody;
+};
+
+
+export const UpdateExpense = async (id, data) => {
+    if (!id) {
+        throw new Error("Expense ID is required");
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/edit-expense/${id}`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const responseBody = await response.json();
+
+    if (!response.ok) {
+        throw new Error(responseBody.message || "Error while updating current expense")
+    }
+
+    return responseBody;
+};
+
+
+export const DeleteExpense = async (id) => {
+    if (!id) {
+        throw new Error("Expense ID is required")
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/delete-expense/${id}`, {
+        method: "DELETE",
+        credentials: "include"
+    });
+
+    if (!response.ok) {
+        const responseBody = await response.json();
+        throw new Error(responseBody.message || "Error while deleting current expense")
+    }
+};

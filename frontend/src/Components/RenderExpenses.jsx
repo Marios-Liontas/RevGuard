@@ -4,17 +4,17 @@ import "../css/styles.css"
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
 
-const RenderRevenues = () => {
+const RenderExpenses = () => {
 
-    const [revenues, setRevenues] = useState([]);
+    const [expenses, setExpenses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchRevenues = async () => {
+        const fetchExpenses = async () => {
             try {
-                const data = await apiClient.GetRevenues();
-                setRevenues(data);
+                const data = await apiClient.GetExpenses();
+                setExpenses(data);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -22,7 +22,7 @@ const RenderRevenues = () => {
             }
         }
 
-        fetchRevenues();
+        fetchExpenses();
     }, []);
 
     if (loading) return <p>loading...</p>;
@@ -36,49 +36,50 @@ const RenderRevenues = () => {
         return `${day}-${month}-${year}`; // Format to "05-07-2024"
     };
 
-    const revenueTotal = () => {
+    const expenseTotal = () => {
         let total = 0;
-        for (let i = 0; i < revenues.length; i++) {
-            total = total + revenues[i].amount;
+        for (let i = 0; i < expenses.length; i++) {
+            total = total + expenses[i].amount;
         }
         return total;
     }
 
     const handleEdit = (id) => {
-        console.log("Editing Revenue");
+        console.log("Editing Expense");
     }
 
     const handleDelete = (id) => {
-        console.log("Deleting Revenue");
+        console.log("Deleting Expense");
     }
+
 
     return (
         <div>
 
-            <span className='flex flex-row gap-5 justify-center pb-5'><h3 className='font-bold tracking-tight text-3xl'>Total Revenue:</h3> <p className='font-bold tracking-tight text-3xl'> {revenueTotal().toFixed(2)}  €</p></span>
+            <span className='flex flex-row gap-5 justify-center pb-5'><h3 className='font-bold tracking-tight text-3xl'>Total Expenses:</h3> <p className='font-bold tracking-tight text-3xl'> - {expenseTotal().toFixed(2)}  €</p></span>
 
-            {revenues.length === 0 ? (
+            {expenses.length === 0 ? (
                 <div className='flex items-center justify-center h-full'>
-                    <p>No revenues found!</p>
+                    <p>No expenses found!</p>
                 </div>
             ) : (
                 <div className='flex items-center justify-center'>
                     <ul className='flex flex-wrap gap-4 justify-center '>
-                        {revenues.map((revenue) => (
-                            <li className='relative p-5 flex flex-col items-center min-w-[300px] max-w-[300px] border border-gray-900 rounded-md gray-900 bg-gray-300 hover:bg-gray-400' key={revenue._id}>
+                        {expenses.map((expense) => (
+                            <li className='relative p-5 flex flex-col items-center min-w-[300px] max-w-[300px] border border-gray-900 rounded-md gray-900 bg-gray-300 hover:bg-gray-400' key={expense._id}>
                                 <div className="absolute top-2 right-2 flex gap-2">
                                     <FaEdit
                                         className="text-blue-500 cursor-pointer"
-                                        onClick={() => handleEdit(revenue._id)}
+                                        onClick={() => handleEdit(expense._id)}
                                     />
                                     <FaTrash
                                         className="text-red-500 cursor-pointer"
-                                        onClick={() => handleDelete(revenue._id)}
+                                        onClick={() => handleDelete(expense._id)}
                                     />
                                 </div>
-                                <p><span className='font-bold tracking-tight'>Amount:</span>    {revenue.amount} €</p>
-                                <p> <span className='font-bold tracking-tight'>Date:</span>   {formatDate(revenue.date)}</p>
-                                <p className='truncate max-w-[250px]'><span className='font-bold tracking-tight'>Description:</span>   {revenue.description}</p>
+                                <p><span className='font-bold tracking-tight'>Amount:</span> - {expense.amount} €</p>
+                                <p> <span className='font-bold tracking-tight'>Date:</span>   {formatDate(expense.date)}</p>
+                                <p className='truncate max-w-[250px]'><span className='font-bold tracking-tight'>Description:</span>   {expense.description}</p>
                             </li>
                         
                         ))}
@@ -91,4 +92,4 @@ const RenderRevenues = () => {
 };
 
 
-export default RenderRevenues;
+export default RenderExpenses;
