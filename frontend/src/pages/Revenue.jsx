@@ -1,14 +1,11 @@
 import React from 'react'
-import PickDate from '../Components/Datepicker';
 import { Link } from 'react-router-dom';
 import RenderRevenues from '../Components/RenderRevenues';
 
 export const Revenue = () => {
     return (
         <div className='flex flex-col items-center space-y-4'>
-            <div className='w-full flex justify-center'>
-                <PickDate />
-            </div>
+
 
             <RenderRevenues />
 

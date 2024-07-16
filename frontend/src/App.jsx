@@ -11,6 +11,9 @@ import AddRevenue from "./pages/AddRevenue";
 import { useAppContext } from './context/AppContext';
 import Expense from "./pages/Expense";
 import AddExpense from "./pages/AddExpense"
+import EditRevenue from "./pages/EditRevenue";
+import EditExpense from "./pages/EditExpense";
+
 
 const App = () => {
 
@@ -92,6 +95,24 @@ const App = () => {
           element={
             <Layout>
               <AddExpense/>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/edit-revenue/:id"
+          element={
+            <Layout>
+              <EditRevenue/>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/edit-expense/:id"
+          element={
+            <Layout>
+              <EditExpense/>
             </Layout>
           }
         />
