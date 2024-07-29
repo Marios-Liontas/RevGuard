@@ -13,6 +13,7 @@ import Expense from "./pages/Expense";
 import AddExpense from "./pages/AddExpense"
 import EditRevenue from "./pages/EditRevenue";
 import EditExpense from "./pages/EditExpense";
+import OverviewPage from "./pages/Overview";
 
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
           element={
             <Layout>
               {isLoggedIn ? (
-                <p>Home Page</p>
+                <OverviewPage/>
               ) : (
                 <SignIn />
               )}
@@ -58,7 +59,7 @@ const App = () => {
           path="/overview"
           element={
             <Layout>
-              Overview
+              <OverviewPage/>
             </Layout>
           }
         />

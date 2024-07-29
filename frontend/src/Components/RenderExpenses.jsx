@@ -3,10 +3,9 @@ import * as apiClient from "../api-client";
 import "../css/styles.css";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
+import { ExpenseChart } from './charts';
 
 const RenderExpenses = () => {
-
     const [expenses, setExpenses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -89,18 +88,6 @@ const RenderExpenses = () => {
         }
     };
 
-    // Sort expenses by date in ascending order (oldest first)
-    const sortedByDateExpenses = [...expenses].sort((a, b) => new Date(a.date) - new Date(b.date));
-
-    // Prepare data for the line chart
-    const expenseDates = sortedByDateExpenses.map(expense => formatDate(expense.date));
-    const expenseAmounts = sortedByDateExpenses.map(expense => expense.amount);
-
-    const lineChartData = expenseDates.map((date, index) => ({
-        date,
-        amount: expenseAmounts[index],
-    }));
-
     return (
         <div>
             <span className='flex flex-row gap-5 justify-center pb-5'>
@@ -159,35 +146,10 @@ const RenderExpenses = () => {
                 </div>
             )}
 
-            <div className='pr-8 flex' style={{ width: '100%', height: '400px' }}>
-                <ResponsiveContainer>
-                    <LineChart
-                        data={lineChartData}
-                        margin={{ top: 20, right: 20, bottom: 60, left: 40 }} // Adjust margins to make space for labels
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis className='font-bold tracking-tight'
-                            dataKey="date"
-                            label={{ value: 'Date', position: 'insideBottomRight', offset: -10, fontSize: 12 }}
-                            tick={{ fontSize: 12 }} // Adjust tick label font size
-                            angle={-20} // Rotate labels to fit better
-                            textAnchor="end" // Align text
-                        />
-                        <YAxis className='font-bold tracking-tight'
-                            label={{ value: 'Amount', angle: -90, position: 'insideLeft', offset: 0, fontSize: 12 }}
-                            tick={{ fontSize: 12 }} // Adjust tick label font size
-                        />
-                        <Tooltip />
-                        <Legend />
-                        <Line
-                            type="monotone"
-                            dataKey="amount"
-                            stroke="#ff0000"
-                            strokeWidth={2}
-                        />
-                    </LineChart>
-                </ResponsiveContainer>
+            <div className='flex justify-center mt-5'>
+                <ExpenseChart expenses={expenses} />
             </div>
+
         </div>
     );
 };
