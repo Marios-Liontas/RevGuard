@@ -5,7 +5,10 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "node src/index.js",
+    "build": "cd ../frontend && npm install && npm run build && cd ../backend && mkdir -p public && cp -r ../frontend/dist/* public/",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
