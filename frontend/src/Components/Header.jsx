@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className='bg-gray-900 py-3'>
-      <div className='container mx-auto my-4 flex justify-between items-center'>
+      <div className='container mx-auto flex flex-col md: my-4 flex justify-between items-center'>
         <span className='text-3xl text-white font-bold tracking-tight'>
           <Link to="/">RevGuard</Link>
         </span>
