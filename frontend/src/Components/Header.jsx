@@ -8,21 +8,23 @@ const Header = () => {
 
   return (
     <div className='bg-gray-900 py-3'>
-      <div className='container mx-auto flex flex-col md: my-4 flex justify-between items-center'>
-        <span className='text-3xl text-white font-bold tracking-tight'>
+      <div className='container mx-auto my-4 flex flex-col md:flex-row justify-between items-center'>
+        {/* Logo Section */}
+        <span className='text-3xl text-white font-bold tracking-tight mb-4 md:mb-0'>
           <Link to="/">RevGuard</Link>
         </span>
 
-        <span className='flex flex-row space-x-1'>
+        {/* Navigation Links */}
+        <span className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4'>
           {isLoggedIn ? (
             <>
-              <Link to="/overview" className='flex items-center text-white px-3 font-bold hover:bg-gray-400'>
+              <Link to="/overview" className='text-white px-3 font-bold hover:bg-gray-400 py-2 md:py-0'>
                 Overview
               </Link>
-              <Link to="/expense" className='flex items-center text-white px-3 font-bold hover:bg-gray-400'>
+              <Link to="/expense" className='text-white px-3 font-bold hover:bg-gray-400 py-2 md:py-0'>
                 Expense
               </Link>
-              <Link to="/revenue" className='flex items-center text-white px-3 font-bold hover:bg-gray-400'>
+              <Link to="/revenue" className='text-white px-3 font-bold hover:bg-gray-400 py-2 md:py-0'>
                 Revenue
               </Link>
               <SignOutButton/>
