@@ -10,6 +10,10 @@ const formatDate = (dateString) => {
 };
 
 const RevenueChart = ({ revenues }) => {
+    if (!revenues || revenues.length === 0) {
+        return null;  // Don't render anything if no data
+    }
+
     const sortedByDateRevenues = [...revenues].sort((a, b) => new Date(a.date) - new Date(b.date));
 
     const lineChartData = sortedByDateRevenues.map(revenue => ({
@@ -51,6 +55,10 @@ const RevenueChart = ({ revenues }) => {
 };
 
 const ExpenseChart = ({ expenses }) => {
+    if (!expenses || expenses.length === 0) {
+        return null;  // Don't render anything if no data
+    }
+
     const sortedByDateExpenses = [...expenses].sort((a, b) => new Date(a.date) - new Date(b.date));
 
     const lineChartData = sortedByDateExpenses.map(expense => ({
