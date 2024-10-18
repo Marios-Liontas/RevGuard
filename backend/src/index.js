@@ -35,6 +35,11 @@ app.use('/api', loginRoute);
 app.use('/api', revenueRoutes);
 app.use('/api', expenseRoutes);
 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+});
+
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
